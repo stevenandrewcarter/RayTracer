@@ -117,8 +117,7 @@ private:
 
 	Vector m_vPosition;					// The camera's position	
 	Vector m_vView;						// The camera's view
-	Vector m_vUpVector;					// The camera's up vector		
-	
+	Vector m_vUpVector;					// The camera's up vector			
 };
 
 #endif

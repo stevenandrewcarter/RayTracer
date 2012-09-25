@@ -50,7 +50,7 @@ Vector RayCast(Ray r, int Depth)
 		// - Smallest Dst is the object		
 		ShapeList[i].setT(-1.0f);		
 		t = ShapeList[i].Intersect(r);		
-		
+
 		if(t > 0.0f)
 		{
 			ShapeList[i].setT(t);			
@@ -153,11 +153,11 @@ int main()
 	LightConstants Material = LightConstants(Vector(0.0f,0.9f,0.0f), Vector(0.1f, 0.1f, 0.1f), Vector(0.1f, 0.1f, 0.1f), Vector(), Vector(), Vector(), 8.0f);
 	a.setPlane(Vector( 0.0f, 1.0f, 0.0f, 1.0f), Material);	
 	ShapeList.push_back(a);
-	
+
 	Material = LightConstants(Vector(1.0f,0.0f,0.0f), Vector(0.1f, 0.1f, 0.1f), Vector(0.0f, 0.0f, 0.0f), Vector(), Vector(), Vector(), 8.0f);
 	a.setPlane(Vector( 0.0f,-1.0f, 0.0f, 1.0f), Material);
 	ShapeList.push_back(a);
-	
+
 	Material = LightConstants(Vector(0.9f, 0.9f, 0.0f), Vector(0.1f, 0.1f, 0.1f), Vector(0.0f, 0.0f, 0.0f), Vector(), Vector(), Vector(), 8.0f);
 	a.setPlane(Vector( 1.0f, 0.0f, 0.0f, 1.0f), Material);
 	ShapeList.push_back(a);
@@ -165,13 +165,13 @@ int main()
 	Material = LightConstants(Vector(0.9f,0.9f,0.9f), Vector(0.1f, 0.1f, 0.1f),Vector(0.0f, 0.0f, 0.0f) ,Vector() , Vector(), Vector(), 8.0f);
 	a.setPlane(Vector(-1.0f, 0.0f, 0.0f, 1.0f), Material);
 	ShapeList.push_back(a);	
-	
+
 	Shapes b = Shapes();
 	Material = LightConstants(Vector(0.0f,0.0f,0.7f), Vector(0.3f, 0.3f, 0.3f), Vector(), Vector(), Vector(0.1f, 0.1f, 0.1f), Vector(), 4.0f);
 	b.setSphere(0.5f, Material, false);
 	b.Translatef(Vector( 0.0f, 1.0f, 0.0f));
 	ShapeList.push_back(b);
-	
+
 	Material = LightConstants(Vector(0.7f,0.0f,0.0f), Vector(0.3f, 0.3f, 0.3f), Vector(), Vector(), Vector(0.5f, 0.5f, 0.5f), Vector(), 16.0f);
 	b.setSphere(0.5f, Material, false);
 	b.Translatef(Vector(-1.0f, 0.0f, 0.0f));
@@ -214,7 +214,7 @@ int main()
 	//aLight.addLight(Ray(Vector(0.0f, 0.0f, -10.0f), Vector(0.0f, 0.0f, 0.0f)), LightValue);
 	cout << "Casting Rays...\n";
 	BYTE Red, Green, Blue;
-	
+
 	for(int i = 1; i < image1.getwidth(); i++)
 	{
 		cout << i;
