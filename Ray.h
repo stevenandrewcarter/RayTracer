@@ -5,22 +5,21 @@
 class Ray
 {
 public:
-	Ray()
-	{
-		Source = Vector();
-		Direction = Vector();
-	};
+  Ray()
+  {
+    Source = Vector();
+    Direction = Vector();
+  };
 
-	Ray(Vector ASource, Vector ADirection)
-	{
-		Source = ASource;
-		Direction = ADirection;
-	};
+  Ray(Vector ASource, Vector ADirection)
+  {
+    Source = ASource;
+    Direction = ADirection;
+  };
 
-	
 
-	Vector Source;
-	Vector Direction;	
+  Vector Source;
+  Vector Direction;
 
 private:
 };
