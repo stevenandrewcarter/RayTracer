@@ -87,11 +87,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Image\bitmap.cpp" />
+    <ClCompile Include="Image\Bitmap.cpp" />
     <ClCompile Include="RayTracer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Image\bitmap.h" />
+    <ClInclude Include="Image\Bitmap.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="IntersectTests.h" />
     <ClInclude Include="Light.h" />

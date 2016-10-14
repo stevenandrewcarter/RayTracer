@@ -1,4 +1,4 @@
-#include "image/bitmap.h"
+#include "Image/Bitmap.h"
 #include "Camera.h"
 #include "Light.h"
 #include "Ray.h"

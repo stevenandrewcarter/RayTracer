@@ -178,7 +178,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Image\bitmap.cpp"
+				RelativePath=".\Image\Bitmap.cpp"
 				>
 			</File>
 			<File
@@ -192,7 +192,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\Image\bitmap.h"
+				RelativePath=".\Image\Bitmap.h"
 				>
 			</File>
 			<File
