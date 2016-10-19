@@ -13,8 +13,8 @@ set(SOURCE_FILES
         Matrix4Operations.h
         PriorityQueue.h
         Ray.h
-        Shapes.h
+        Shapes/Shape.h
         Image/Bitmap.h
         Image/Bitmap.cpp
-        Maths/Vector.h)
+        Maths/Vector.h Shapes/Sphere.cpp Shapes/Sphere.h Shapes/Triangle.cpp Shapes/Triangle.h Shapes/Plane.cpp Shapes/Plane.h Maths/Vector.cpp IntersectTest.cpp)
 add_executable(RayTracer ${SOURCE_FILES})

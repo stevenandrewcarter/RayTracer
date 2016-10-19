@@ -1,7 +1,7 @@
 #ifndef PRIORITYQUEUE_H
 #define PRIORITYQUEUE_H
 
-#include "Shapes.h"
+#include "Shapes/Shape.h"
 
 class Node {
 public:
@@ -9,10 +9,10 @@ public:
         next = NULL;
         previous = NULL;
         P = 0;
-        Item = Shapes();
+        Item = Shape();
     };
 
-    Node(float p, Shapes item) {
+    Node(float p, Shape item) {
         next = NULL;
         previous = NULL;
         P = p;
@@ -22,7 +22,7 @@ public:
     Node *next;
     Node *previous;
     float P;
-    Shapes Item;
+    Shape Item;
 
     friend class PriorityQueue;
 };
@@ -37,7 +37,7 @@ public:
         Size = 0;
     };
 
-    void addItem(float p, Shapes item) {
+    void addItem(float p, Shape item) {
         Node *Current = head->next;
         Node *newNode = new Node(p, item);
         Size++;
@@ -60,9 +60,9 @@ public:
         }
     };
 
-    Shapes getItem() {
+    Shape getItem() {
         if (head->next != tail) {
-            Shapes ret = head->next->Item;
+            Shape ret = head->next->Item;
             Node *temp = head->next;
             head->next = temp->next;
             temp->next->previous = head;
@@ -72,7 +72,7 @@ public:
             Size--;
             return ret;
         } else {
-            return Shapes();
+            return Shape();
         }
     };
 

@@ -224,7 +224,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Shapes.h"
+				RelativePath=".\Shape.h"
 				>
 			</File>
 			<File

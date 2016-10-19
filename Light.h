@@ -3,7 +3,7 @@
 
 #include "LightConstants.h"
 #include "Ray.h"
-#include "Shapes.h"
+#include "Shapes/Shape.h"
 #include <iostream>
 #include <vector>
 
@@ -40,7 +40,7 @@ public:
         return Lights[Light].LightValue;
     };
 
-    Vector CalculateLightModel(Vector Point, Vector n, Vector v, LightConstants Material, vector<Shapes> &ShapeList,
+    Vector CalculateLightModel(Vector Point, Vector n, Vector v, LightConstants Material, vector<Shape *> &ShapeList,
                                int CurrentShape) {
         Vector Pd = Material.Diffuse;
         Vector Ps = Material.Specular;
@@ -63,7 +63,7 @@ public:
             Ray Feeler = Ray(Point, l.Normalize());
             for (int j = 0; (unsigned) j < ShapeList.size(); j++) {
                 if (j != CurrentShape) {
-                    double t = (double) ShapeList[j].Intersect(Feeler);
+                    double t = (double) ShapeList[j]->Intersect(&Feeler);
                     double ShapeT = (double) Distance(Point, LightsSource);
                     if ((t > 0) && (t < ShapeT)) {
                         Shadowed = 0.0f;

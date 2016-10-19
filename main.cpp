@@ -1,10 +1,13 @@
 #include "Image/Bitmap.h"
 #include "Camera.h"
 #include "Light.h"
+#include "Shapes/Plane.h"
+#include "Shapes/Sphere.h"
+#include "Matrix4Operations.h"
 
 using namespace std;
 
-vector<Shapes> ShapeList;
+vector<Shape*> ShapeList;
 Light aLight;
 Camera ViewCamera;
 
@@ -20,7 +23,7 @@ float Limit255(float a) {
 
 Vector RayCast(Ray r, int Depth) {
     Vector result = Vector();
-    Shapes o = Shapes();
+    Shape* o;
     int ShapeNum = 0;
     bool Intersect = false;
     //Find nearest intersection between r and objects
@@ -30,31 +33,31 @@ Vector RayCast(Ray r, int Depth) {
         // - Find t for each shape
         // - if t > 0 for that shape find dst
         // - Smallest Dst is the object
-        ShapeList[i].setT(-1.0f);
-        auto t = ShapeList[i].Intersect(r);
+        ShapeList[i]->setT(-1.0f);
+        auto t = ShapeList[i]->Intersect(&r);
 
         if (t > 0.0f) {
-            ShapeList[i].setT(t);
+            ShapeList[i]->setT(t);
             Intersect = true;
             if (Dist < 0.0f) {
-                Dist = ShapeList[i].getT();
+                Dist = ShapeList[i]->getT();
             }
-            if (ShapeList[i].getT() <= Dist) {
+            if (ShapeList[i]->getT() <= Dist) {
                 o = ShapeList[i];
                 ShapeNum = i;
-                Dist = o.getT();
+                Dist = o->getT();
             }
         }
     }
     if (!Intersect) {
         return result;
     }
-    Vector p = r.Source + (r.Direction * o.getT());
-    Vector n = o.Normal(p);
+    Vector p = r.Source + (r.Direction * o->getT());
+    Vector n = o->Normal(p);
     Vector v = ViewCamera.Position() - p;
-    LightConstants MaterialP = o.getLightConstants();
-    if (o.Has_Texture()) {
-        Vector Material = o.getMaterialColour(p);
+    LightConstants MaterialP = o->getLightConstants();
+    if (o->Has_Texture()) {
+        Vector Material = o->GetMaterialColour(p);
         MaterialP.Diffuse = Material;
     }
     result = aLight.CalculateLightModel(p, n, v, MaterialP, ShapeList, ShapeNum);
@@ -62,7 +65,7 @@ Vector RayCast(Ray r, int Depth) {
     if (Depth == 0) {
         return result;
     }
-    LightConstants P = o.getLightConstants();
+    LightConstants P = o->getLightConstants();
     Vector ZERO = Vector(0.0f, 0.0f, 0.0f);
     if ((P.Reflective.x != ZERO.x) || (P.Reflective.y != ZERO.y) || (P.Reflective.z != ZERO.z)) {
         // Reflection Vector = u - 2(u . n)n
@@ -98,61 +101,55 @@ int main() {
                             image1.getheight());
         ViewCamera.CalculatePlaneNormals();
 
-        Shapes a = Shapes();
         LightConstants Material = LightConstants(Vector(0.0f, 0.9f, 0.0f), Vector(0.1f, 0.1f, 0.1f),
                                                  Vector(0.1f, 0.1f, 0.1f), Vector(), Vector(), Vector(), 8.0f);
-        a.setPlane(Vector(0.0f, 1.0f, 0.0f, 1.0f), Material);
-        ShapeList.push_back(a);
+        ShapeList.push_back(new Plane(Vector(0.0f, 1.0f, 0.0f, 1.0f), Material));
 
         Material = LightConstants(Vector(1.0f, 0.0f, 0.0f), Vector(0.1f, 0.1f, 0.1f), Vector(0.0f, 0.0f, 0.0f),
                                   Vector(),
                                   Vector(), Vector(), 8.0f);
-        a.setPlane(Vector(0.0f, -1.0f, 0.0f, 1.0f), Material);
-        ShapeList.push_back(a);
+        ShapeList.push_back(new Plane(Vector(0.0f, -1.0f, 0.0f, 1.0f), Material));
 
         Material = LightConstants(Vector(0.9f, 0.9f, 0.0f), Vector(0.1f, 0.1f, 0.1f), Vector(0.0f, 0.0f, 0.0f),
                                   Vector(),
                                   Vector(), Vector(), 8.0f);
-        a.setPlane(Vector(1.0f, 0.0f, 0.0f, 1.0f), Material);
-        ShapeList.push_back(a);
+        ShapeList.push_back(new Plane(Vector(1.0f, 0.0f, 0.0f, 1.0f), Material));
 
         Material = LightConstants(Vector(0.9f, 0.9f, 0.9f), Vector(0.1f, 0.1f, 0.1f), Vector(0.0f, 0.0f, 0.0f),
                                   Vector(),
                                   Vector(), Vector(), 8.0f);
-        a.setPlane(Vector(-1.0f, 0.0f, 0.0f, 1.0f), Material);
-        ShapeList.push_back(a);
+        ShapeList.push_back(new Plane(Vector(-1.0f, 0.0f, 0.0f, 1.0f), Material));
 
-        Shapes b = Shapes();
         Material = LightConstants(Vector(0.0f, 0.0f, 0.7f), Vector(0.3f, 0.3f, 0.3f), Vector(), Vector(),
                                   Vector(0.1f, 0.1f, 0.1f), Vector(), 4.0f);
-        b.setSphere(0.5f, Material, false);
-        b.Translatef(Vector(0.0f, 1.0f, 0.0f));
-        ShapeList.push_back(b);
+        Shape *sphere1 = new Sphere(0.5f, Material, false);
+        sphere1->Translatef(Vector(0.0f, 1.0f, 0.0f));
+        ShapeList.push_back(sphere1);
 
         Material = LightConstants(Vector(0.7f, 0.0f, 0.0f), Vector(0.3f, 0.3f, 0.3f), Vector(), Vector(),
                                   Vector(0.5f, 0.5f, 0.5f), Vector(), 16.0f);
-        b.setSphere(0.5f, Material, false);
-        b.Translatef(Vector(-1.0f, 0.0f, 0.0f));
-        ShapeList.push_back(b);
+        Shape *sphere2 = new Sphere(0.5f, Material, false);
+        sphere2->Translatef(Vector(-1.0f, 0.0f, 0.0f));
+        ShapeList.push_back(sphere2);
 
         Material = LightConstants(Vector(0.1f, 0.1f, 0.1f), Vector(0.9f, 0.9f, 0.9f), Vector(), Vector(),
                                   Vector(0.5f, 0.5f, 0.5f), Vector(), 16.0f);
-        b.setSphere(0.5f, Material, false);
-        b.Translatef(Vector(1.0f, 0.0f, 0.0f));
-        ShapeList.push_back(b);
+        Shape *sphere3 = new Sphere(0.5f, Material, false);
+        sphere3->Translatef(Vector(1.0f, 0.0f, 0.0f));
+        ShapeList.push_back(sphere3);
 
         Material = LightConstants(Vector(0.0f, 0.7f, 0.0f), Vector(0.3f, 0.3f, 0.3f), Vector(), Vector(),
                                   Vector(0.5f, 0.5f, 0.5f), Vector(), 16.0f);
-        b.setSphere(0.5f, Material, false);
-        b.Translatef(Vector(0.0f, -1.0f, 0.0f));
-        ShapeList.push_back(b);
+        Shape *sphere4 = new Sphere(0.5f, Material, false);
+        sphere4->Translatef(Vector(0.0f, -1.0f, 0.0f));
+        ShapeList.push_back(sphere4);
 
 //        Material = LightConstants(Vector(0.5f, 0.5f, 0.5f), Vector(0.5f, 0.5f, 0.5f), Vector(), Vector(), Vector(),
 //                                  Vector(0.9f, 0.9f, 0.9f), 16.0f);
 //        b.setTriangle(Vector(0.5f, 0.0f, 0.0f), Vector(0.0f, 0.5f, 0.0f), Vector(-0.5f, 0.0f, 0.0f), Material);
 //        b.Translatef(Vector(0.0f, 0.0f, -0.5f));
         //b.Rotatef(3.0f, Vector(0.0f, 1.0f, 0.0f));
-        ShapeList.push_back(b);
+        // ShapeList.push_back(b);
 
         LightConstants LightValue = LightConstants(Vector(0.4f, 0.4f, 0.4f), Vector(0.3f, 0.3f, 0.3f),
                                                    Vector(0.7f, 0.7f, 0.7f));

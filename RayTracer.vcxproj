@@ -99,7 +99,7 @@
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Matrix4Operations.h" />
     <ClInclude Include="Ray.h" />
-    <ClInclude Include="Shapes.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Maths\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

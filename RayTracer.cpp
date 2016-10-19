@@ -2,7 +2,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Ray.h"
-#include "Shapes.h"
+#include "Shapes/Shape.h"
 #include "Maths/Vector.h"
 
 using namespace std;
