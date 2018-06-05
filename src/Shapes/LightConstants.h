@@ -1,7 +1,7 @@
 #ifndef LIGHTCONSTANTS_H
 #define LIGHTCONSTANTS_H
 
-#include "Maths/Vector.h"
+#include "../Maths/Vector.h"
 
 class LightConstants {
 public:
@@ -26,7 +26,7 @@ public:
         f = F;
     };
 
-    // Constructor for Light source constrants
+    // Constructor for Light source constants
     LightConstants(Vector diffuse, Vector specular, Vector ambient) {
         Diffuse = diffuse;
         Specular = specular;

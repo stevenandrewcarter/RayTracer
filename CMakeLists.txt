@@ -4,17 +4,27 @@ project(RayTracer)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-        main.cpp
-        Camera.h
-        IntersectTests.h
-        Light.h
-        LightConstants.h
-        Matrix4.h
-        Matrix4Operations.h
-        PriorityQueue.h
-        Ray.h
-        Shapes/Shape.h
-        Image/Bitmap.h
-        Image/Bitmap.cpp
-        Maths/Vector.h Shapes/Sphere.cpp Shapes/Sphere.h Shapes/Triangle.cpp Shapes/Triangle.h Shapes/Plane.cpp Shapes/Plane.h Maths/Vector.cpp IntersectTest.cpp)
+        src/main.cpp
+        src/Camera.h
+        src/Shapes/Light.h
+        src/Shapes/LightConstants.h
+        src/Maths/Matrix4.h
+        src/Maths/Matrix4Operations.h
+        src/PriorityQueue.h
+        src/Maths/Ray.h
+        src/Shapes/Shape.h
+        src/Image/Bitmap.h
+        src/Image/Bitmap.cpp
+        src/Maths/Vector.h
+        src/Shapes/Sphere.cpp
+        src/Shapes/Sphere.h
+        src/Shapes/Triangle.cpp
+        src/Shapes/Triangle.h
+        src/Shapes/Plane.cpp
+        src/Shapes/Plane.h
+        src/Maths/Vector.cpp
+        src/Shapes/World.cpp
+        src/Shapes/World.h
+        src/Shapes/Light.cpp
+        src/Camera.cpp)
 add_executable(RayTracer ${SOURCE_FILES})

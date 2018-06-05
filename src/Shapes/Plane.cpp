@@ -1,6 +1,6 @@
 #include "Plane.h"
-#include "../IntersectTests.h"
-#include "../Matrix4Operations.h"
+#include "../Maths/Matrix4Operations.h"
+#include "../Maths/Ray.h"
 
 Plane::Plane(Vector Normal, LightConstants material) {
     plane = Normal;

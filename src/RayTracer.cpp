@@ -1,7 +1,7 @@
 #include "Image/Bitmap.h"
 #include "Camera.h"
-#include "Light.h"
-#include "Ray.h"
+#include "Shapes/Light.h"
+#include "Maths/Ray.h"
 #include "Shapes/Shape.h"
 #include "Maths/Vector.h"
 

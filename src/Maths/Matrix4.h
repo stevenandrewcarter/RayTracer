@@ -1,7 +1,7 @@
 #ifndef MATRIX4_H
 #define MATRIX4_H
 
-#include "Maths/Vector.h"
+#include "Vector.h"
 
 class Matrix4 {
 public:

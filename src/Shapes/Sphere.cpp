@@ -1,6 +1,6 @@
 #include "Sphere.h"
-#include "../Matrix4Operations.h"
-#include "../IntersectTests.h"
+#include "../Maths/Matrix4Operations.h"
+#include "../Maths/Ray.h"
 
 Sphere::Sphere(float R, LightConstants material, bool Textured) {
     Center = Vector();
@@ -22,9 +22,9 @@ Vector Sphere::GetMaterialColour(Vector point) {
     ObjectTexture.load("TEX2.bmp");
     BYTE R, G, B;
     // Get Angles
-    float Theta = (float) atan(point.y / point.x);
+    auto Theta = (float) atan(point.y / point.x);
     //Theta = RadToDegree(Theta);
-    float Omega = (float) acos(point.z / (sqrt((point.x * point.x) + (point.y * point.y) + (point.z * point.z))));
+    auto Omega = (float) acos(point.z / (sqrt((point.x * point.x) + (point.y * point.y) + (point.z * point.z))));
     //Omega = RadToDegree(Omega);
     double s = Theta / 360;
     double t = (Omega / 180) + 0.5;
@@ -34,7 +34,7 @@ Vector Sphere::GetMaterialColour(Vector point) {
     float r = R / 255.0f;
     float g = G / 255.0f;
     float b = B / 255.0f;
-    return Vector(r, g, b);
+    return {r, g, b};
 }
 
 Vector Sphere::Normal(Vector p) {

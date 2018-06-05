@@ -6,15 +6,15 @@
 class Node {
 public:
     Node() {
-        next = NULL;
-        previous = NULL;
+        next = nullptr;
+        previous = nullptr;
         P = 0;
         Item = Shape();
     };
 
     Node(float p, Shape item) {
-        next = NULL;
-        previous = NULL;
+        next = nullptr;
+        previous = nullptr;
         P = p;
         Item = item;
     };

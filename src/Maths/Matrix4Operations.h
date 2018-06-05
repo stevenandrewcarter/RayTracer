@@ -2,7 +2,7 @@
 #define MATRIX4OPERATIONS_H
 
 #include "Matrix4.h"
-#include "Maths/Vector.h"
+#include "Vector.h"
 
 class Matrix4Operations {
 public:
@@ -43,8 +43,8 @@ public:
         Vector vView = RotateVector;
 
         // Calculate the sine and cosine of the angle once
-        float cosTheta = (float) cos(angle);
-        float sinTheta = (float) sin(angle);
+        auto cosTheta = (float) cos(angle);
+        auto sinTheta = (float) sin(angle);
 
         // Find the new x position for the new rotated point
         vNewView.x = (cosTheta + (1 - cosTheta) * x * x) * vView.x;

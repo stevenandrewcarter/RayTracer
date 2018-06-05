@@ -55,11 +55,11 @@ public:
 
 
     Vector operator+(const Vector &a) const {
-        return Vector(x + a.x, y + a.y, z + a.z);
+        return {x + a.x, y + a.y, z + a.z};
     };
 
     Vector operator-(const Vector &a) const {
-        return Vector(x - a.x, y - a.y, z - a.z);
+        return {x - a.x, y - a.y, z - a.z};
     };
 
     Vector operator*(const Vector &a) const {
@@ -75,11 +75,11 @@ public:
     };
 
     Vector operator*(const float &a) const {
-        return Vector(x * a, y * a, z * a, t * a);
+        return {x * a, y * a, z * a, t * a};
     };
 
     Vector operator/(const float &a) const {
-        return Vector(x / a, y / a, z / a, t / a);
+        return {x / a, y / a, z / a, t / a};
     };
 
     float Magnitude() {
@@ -88,7 +88,7 @@ public:
 
     Vector Normalize() {
         float n = Magnitude();
-        return Vector(x / n, y / n, z / n);
+        return {x / n, y / n, z / n};
     };
 
 

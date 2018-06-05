@@ -2,7 +2,7 @@
 #define RAYTRACER_SPHERE_H
 
 #include "Shape.h"
-#include "../LightConstants.h"
+#include "LightConstants.h"
 
 class Sphere : public Shape {
     Vector Center;

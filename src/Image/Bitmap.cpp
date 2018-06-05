@@ -1,6 +1,6 @@
 #include "Bitmap.h"
 
-Bitmap::Bitmap(void) {
+Bitmap::Bitmap() {
     data = 0;
     width = height = 0;
 }
@@ -98,7 +98,7 @@ bool Bitmap::save(const char *filename) {
     bitsize = width * height * 3; //Get size of the Bitmap (width*height*3 Bytes per Pixel)
     bitsize += bitsize % 4; //and round to next 4 bytes (see byte alignement in compiler options!)
 
-    //FILEHEADER
+    // FILE HEADER
     filehead.bfType = 'MB';
     filehead.bfSize = sizeof(bmpFHEAD) - 2 + sizeof(bmpIHEAD) + bitsize; // -2 due to byte alignment
     filehead.bfReserved1 = 0;
@@ -151,8 +151,7 @@ bool Bitmap::save(const char *filename) {
     return true;
 }
 
-Bitmap::~Bitmap(void) {
-    if (data)
-        delete data;
-    data = 0;
+Bitmap::~Bitmap() {
+    delete data;
+    data = nullptr;
 }

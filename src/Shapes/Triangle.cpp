@@ -1,7 +1,7 @@
 #include "Triangle.h"
-#include "../Matrix4Operations.h"
-#include "../IntersectTests.h"
+#include "../Maths/Matrix4Operations.h"
 #include "Plane.h"
+#include "../Maths/Ray.h"
 
 Triangle::Triangle(Vector n_v0, Vector n_v1, Vector n_v2, LightConstants material) {
     v0 = n_v0;

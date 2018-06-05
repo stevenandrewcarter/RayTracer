@@ -1,8 +1,8 @@
 #ifndef SHAPES_H
 #define SHAPES_H
 
+#include "LightConstants.h"
 #include "../Image/Bitmap.h"
-#include "../LightConstants.h"
 
 class Ray;
 

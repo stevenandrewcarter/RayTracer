@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include <bitset>
 
 #ifndef BITMAP_H
@@ -40,7 +40,7 @@ class Bitmap {
 public:
     unsigned char *data;
 
-    Bitmap(void);
+    Bitmap();
 
     bool create(int x, int y);
 
@@ -48,11 +48,11 @@ public:
 
     bool save(const char *filename);
 
-    int getwidth(void) {
+    int getwidth() {
         if (data) return width; else return -1;
     };
 
-    int getheight(void) {
+    int getheight() {
         if (data) return height; else return -1;
     };
 
@@ -60,7 +60,7 @@ public:
 
     void setcolor(int x, int y, BYTE r, BYTE g, BYTE b);
 
-    ~Bitmap(void);
+    ~Bitmap();
 };
 
 #endif
