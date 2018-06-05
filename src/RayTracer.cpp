@@ -1,5 +1,5 @@
 #include "Image/Bitmap.h"
-#include "Camera.h"
+#include "Shapes/Camera.h"
 #include "Shapes/Light.h"
 #include "Maths/Ray.h"
 #include "Shapes/Shape.h"

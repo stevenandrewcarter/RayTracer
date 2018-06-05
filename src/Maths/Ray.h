@@ -15,7 +15,6 @@ public:
         Direction = ADirection;
     };
 
-
     Vector Source;
     Vector Direction;
 

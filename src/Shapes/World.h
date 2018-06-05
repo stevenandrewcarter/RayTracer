@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Light.h"
-#include "../Camera.h"
+#include "Camera.h"
 
 class Bitmap;
 class Shape;

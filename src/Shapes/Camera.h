@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "Maths/Vector.h"
+#include "../Maths/Vector.h"
 
 class Camera {
 public:

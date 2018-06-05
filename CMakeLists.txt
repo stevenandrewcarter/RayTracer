@@ -5,7 +5,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
         src/main.cpp
-        src/Camera.h
+        src/Shapes/Camera.h
         src/Shapes/Light.h
         src/Shapes/LightConstants.h
         src/Maths/Matrix4.h
@@ -26,5 +26,5 @@ set(SOURCE_FILES
         src/Shapes/World.cpp
         src/Shapes/World.h
         src/Shapes/Light.cpp
-        src/Camera.cpp)
+        src/Shapes/Camera.cpp)
 add_executable(RayTracer ${SOURCE_FILES})

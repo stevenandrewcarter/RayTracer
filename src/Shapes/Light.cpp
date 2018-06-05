@@ -104,8 +104,8 @@ float Light::MicroFacet(Vector l, Vector v, Vector n, float m) {
 }
 
 float Light::Geometric(Vector n, Vector l, Vector v) {
-    Vector m = Vector();
-    float G = 0.0f;
+    Vector m;
+    float G;
     if (Norm(l + v) == 0) {
         G = 1.0f;
         return G;

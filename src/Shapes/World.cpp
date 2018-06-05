@@ -4,6 +4,7 @@
 #include "Plane.h"
 #include "Sphere.h"
 #include "../Maths/Matrix4Operations.h"
+#include "Triangle.h"
 #include <iostream>
 
 float Limit255(float a) {
@@ -65,12 +66,12 @@ World::World(Bitmap *image) {
     sphere4->Translatef(Vector(0.0f, -1.0f, 0.0f));
     shape_list.push_back(sphere4);
 
-//        Material = LightConstants(Vector(0.5f, 0.5f, 0.5f), Vector(0.5f, 0.5f, 0.5f), Vector(), Vector(), Vector(),
-//                                  Vector(0.9f, 0.9f, 0.9f), 16.0f);
-//        b.setTriangle(Vector(0.5f, 0.0f, 0.0f), Vector(0.0f, 0.5f, 0.0f), Vector(-0.5f, 0.0f, 0.0f), Material);
-//        b.Translatef(Vector(0.0f, 0.0f, -0.5f));
-    //b.Rotatef(3.0f, Vector(0.0f, 1.0f, 0.0f));
-    // ShapeList.push_back(b);
+    Material = LightConstants(Vector(0.5f, 0.5f, 0.5f), Vector(0.5f, 0.5f, 0.5f), Vector(), Vector(), Vector(),
+                              Vector(0.9f, 0.9f, 0.9f), 16.0f);
+    Shape *b = new Triangle(Vector(0.5f, 0.0f, 0.0f), Vector(0.0f, 0.5f, 0.0f), Vector(-0.5f, 0.0f, 0.0f), Material);
+    b->Translatef(Vector(0.0f, 0.0f, -0.5f));
+//    b->Rotatef(3.0f, Vector(0.0f, 1.0f, 0.0f));
+    shape_list.push_back(b);
 
     LightConstants LightValue = LightConstants(Vector(0.4f, 0.4f, 0.4f), Vector(0.3f, 0.3f, 0.3f),
                                                Vector(0.7f, 0.7f, 0.7f));
@@ -87,15 +88,14 @@ World::World(Bitmap *image) {
         Vector Left = Parametric(view_camera->P3(), view_camera->P0(), t);
         Vector Right = Parametric(view_camera->P2(), view_camera->P1(), t);
         for (int j = 1; j < image->getheight(); j++) {
-            cout << j;
             float h = image->getheight();
             t = j / h;
             Vector RayDir = Parametric(Left, Right, t);
             Matrix4Operations Translate;
-            Matrix4Operations TranslateC;
             Translate.SetTranslate(RayDir);
             RayDir = Translate.Translate(Vector(0.0f, 0.0f, -3.0f));
             Vector C = view_camera->Position();
+            Matrix4Operations TranslateC;
             TranslateC.SetTranslate(C);
             C = TranslateC.Translate(Vector(0.0f, 0.0f, -3.0f));
             RayDir = C - RayDir;

@@ -60,23 +60,18 @@ bool Bitmap::load(const char *filename) {
     for (y = 0; y < height; y++) {
         for (x = 0; x < width; x++) {
             fread(color, sizeof(color), 1, fp);
-
             //Swap BGR to RGB
             swpclr = color[0];
             color[0] = color[2];
             color[2] = swpclr;
-
             setcolor(x, y, color[0], color[1], color[2]);
         }
-
         //Add padding bytes
         //FIX: Move filepointer instead
         for (int a = 0; a < (4 - ((3 * width) % 4)) % 4; a++)
             fread(&swpclr, sizeof(BYTE), 1, fp);
     }
-
     fclose(fp);
-
     return data != nullptr;
 }
 
@@ -88,16 +83,13 @@ bool Bitmap::save(const char *filename) {
     BYTE swpclr;
     long bitsize; //Size of the Bitmap
     FILE *fp = fopen(filename, "wb");
-
     // If there's no data nor a file, don't even start writing
     if (!data || !fp) {
         fclose(fp);
         return false;
     }
-
     bitsize = width * height * 3; //Get size of the Bitmap (width*height*3 Bytes per Pixel)
     bitsize += bitsize % 4; //and round to next 4 bytes (see byte alignement in compiler options!)
-
     // FILE HEADER
     filehead.bfType = 'MB';
     filehead.bfSize = sizeof(bmpFHEAD) - 2 + sizeof(bmpIHEAD) + bitsize; // -2 due to byte alignment

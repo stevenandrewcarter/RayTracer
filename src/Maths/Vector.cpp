@@ -5,7 +5,7 @@ float DotProduct(Vector u, Vector v) {
 }
 
 float Norm(Vector u) {
-    return (float) sqrt((u.x * u.x) + (u.y * u.y) + (u.z * u.z) + (u.t * u.t));
+    return sqrt((u.x * u.x) + (u.y * u.y) + (u.z * u.z) + (u.t * u.t));
 }
 
 float Distance(Vector p1, Vector p2) {

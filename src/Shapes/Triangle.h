@@ -3,7 +3,7 @@
 
 #include "Shape.h"
 
-class Triangle : Shape {
+class Triangle : public Shape {
     Vector v0, v1, v2;
 
 public:

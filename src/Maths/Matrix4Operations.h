@@ -6,8 +6,7 @@
 
 class Matrix4Operations {
 public:
-    Matrix4Operations() {
-    };
+    Matrix4Operations() = default;
 
     /*Matrix4 Translatef(Matrix4 M, Vector u)
       {
@@ -32,9 +31,6 @@ public:
         return T * u;
     };
 
-    void SetRotate(Vector u) {
-    };
-
     Vector Rotate(float angle, Vector Axis, Vector RotateVector) {
         Vector vNewView;
         float x = Axis.x;
@@ -43,8 +39,8 @@ public:
         Vector vView = RotateVector;
 
         // Calculate the sine and cosine of the angle once
-        auto cosTheta = (float) cos(angle);
-        auto sinTheta = (float) sin(angle);
+        auto cosTheta = cos(angle);
+        auto sinTheta = sin(angle);
 
         // Find the new x position for the new rotated point
         vNewView.x = (cosTheta + (1 - cosTheta) * x * x) * vView.x;
