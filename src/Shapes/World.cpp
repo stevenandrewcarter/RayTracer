@@ -75,7 +75,7 @@ World::World(Bitmap *image) {
 
     LightConstants LightValue = LightConstants(Vector(0.4f, 0.4f, 0.4f), Vector(0.3f, 0.3f, 0.3f),
                                                Vector(0.7f, 0.7f, 0.7f));
-    light = std::unique_ptr<Light>(new Light(Ray(Vector(0.5f, 0.5f, -1.0f), Vector(0.0f, 0.0f, 0.0f)), LightValue));
+    light = std::unique_ptr<Light>(new Light(Ray(Vector(0.0f, 0.0f, -1.0f), Vector(0.0f, 0.0f, 0.0f)), LightValue));
     LightValue = LightConstants(Vector(0.7f, 0.7f, 0.7f), Vector(0.3f, 0.3f, 0.3f), Vector(0.5f, 0.5f, 0.5f));
     light->addLight(Ray(Vector(0.5f, 0.5f, -1.0f), Vector(0.0f, 0.0f, 0.0f)), LightValue);
     cout << "Casting Rays...\n";
